@@ -6,19 +6,22 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:kvantorium/Default/loadingScreen.dart';
 
 bool registr = false;
-bool log = false;
 
 
 class AutorisationScreen extends StatefulWidget {
 
-  AutorisationScreen({Key? key}) : super(key: key);
+  final log;
+
+  AutorisationScreen({Key? key, this.log}) : super(key: key);
 
   @override
-  _AutorisationScreenState createState() => _AutorisationScreenState();
+  _AutorisationScreenState createState() => _AutorisationScreenState(log: log);
 
 }
 
 class _AutorisationScreenState extends State<AutorisationScreen> {
+
+  late final bool log;
 
   final _formKey = GlobalKey<FormState>();
   var who, login, password;
@@ -32,12 +35,14 @@ class _AutorisationScreenState extends State<AutorisationScreen> {
     'Администратор'
   ];
 
+  _AutorisationScreenState({required this.log});
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
         .of(context)
         .size;
-    var val;
+
     if(log == true) {
       Fluttertoast.showToast(
           msg: "Проверьте правильность ввода данных и подключение к сети!",
@@ -119,6 +124,7 @@ class _AutorisationScreenState extends State<AutorisationScreen> {
                         onChanged: (value) {
                           setState(() {
                             selectedValue = value as String;
+                            who = selectedValue;
                           });
 
                         },
@@ -231,7 +237,7 @@ class _AutorisationScreenState extends State<AutorisationScreen> {
                                     textColor: Colors.white,
                                     fontSize: 16.0
                                 );
-                                return '';
+                                return;
                               }
                               else {
                                 password = value;
@@ -268,7 +274,8 @@ class _AutorisationScreenState extends State<AutorisationScreen> {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoadingScreen()));
+                              print("$login, $password, $who, $remember");
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoadingScreen(login: login, who: who, password: password, remember: remember,)));
                             }
                           },
                           child: const Text('Вход', style: TextStyle(color: Colors.white, fontSize: 25),),

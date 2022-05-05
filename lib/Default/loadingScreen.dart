@@ -1,58 +1,70 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:kvantorium/DataProfile.dart';
+import 'package:kvantorium/Students/Home.dart';
 
 class LoadingScreen extends StatefulWidget {
 
-  LoadingScreen({Key? key}) : super(key: key);
+  final String login;
+  final String who;
+  final String password;
+  final bool remember;
 
+  LoadingScreen({Key? key, required this.login, required this.who, required this.password, required this.remember}) : super(key: key);
 
   @override
-  _LoadingScreenState createState() => _LoadingScreenState();
+  _LoadingScreenState createState() => _LoadingScreenState(login: login, password: password, who: who, remember: remember);
 }
 
-class _LoadingScreenState extends State<LoadingScreen>
-    with SingleTickerProviderStateMixin {
+class _LoadingScreenState extends State<LoadingScreen> {
+
+  final String login;
+  final String who;
+  final String password;
+  final bool remember;
+
+  _LoadingScreenState(
+      {required this.login, required this.who, required this.password, required this.remember});
+
+  late int id;
+
+  void loading() async {
+    var response = await http.get(Uri.parse(
+        "http://a0595760.xsph.ru/kvantorium/autorisation.php/?l='$login'&p='$password'&w='$who'"));
+    print(response.body.toString());
+    if (response.body.toString() != '') {
+      id = int.parse(response.body.toString());
+      Profile User = Profile(
+        login: login,
+        ident: id,
+        rememb: remember,
+      );
+      User.init();
+      Navigator.pushReplacement(
+          context,
+          CupertinoPageRoute(
+            builder: (context) => HomeStudent(profile: User)
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    /*var temp = reg(name, surname, patronymic, school, password);
-
-    Future.delayed(Duration(seconds: 3), () async {
-      if(!teacher) {
-        if (registr) {
-          log = false;
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => WorksPage(title: "")));
-        } else {
-          log = true;
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => LogIn(title: '',)));
-        }
-      }
-      else {
-        if (registr) {
-          log = false;
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => TeacherPage(title: '',)));
-        } else {
-          log = true;
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => LogIn(title: '',)));
-        }
-      }
-    });*/
-
+    loading();
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Загрузка"),
-          backgroundColor: Color.fromARGB(255, 2, 49, 161),
-        ),
-        body: Center(
-          child: Image.asset("assets/loading.gif"),
+      appBar: AppBar(
+        title: Text("Загрузка"),
+        backgroundColor: Color.fromARGB(255, 2, 49, 161),
+      ),
+      body: Center(
+        child: Image.asset("assets/loading.gif"),
 
-        )
+      ),
     );
   }
 }

@@ -71,7 +71,7 @@ class _Intro1 extends State<Intro1> {
                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => AutorisationScreen()
+                          builder: (context) => AutorisationScreen(log: false,)
                         )
                     );
                  },
@@ -108,7 +108,7 @@ class _Intro1 extends State<Intro1> {
               ),
         ),
         const Text(
-          'Об учережднии',
+          'Об учрежднии',
           style: kv_style.black_BankGothic_30,
         ),
         Image.asset("assets/Images/Intro_page1.jpg", scale: 1.8,),
