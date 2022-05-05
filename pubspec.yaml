@@ -35,6 +35,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   smooth_page_indicator: ^1.0.0+2
+  dropdown_button2: ^1.4.0
+  fluttertoast: ^8.0.9
 
 dev_dependencies:
   flutter_test:
@@ -64,7 +66,8 @@ flutter:
         - asset: assets/bankgothic.ttf
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/Images/Intro_page1.jpg
+    - assets/.
+    - assets/Images/.
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

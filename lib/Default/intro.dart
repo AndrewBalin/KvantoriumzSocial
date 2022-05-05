@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kvantorium/styles.dart' as kv_style;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:kvantorium/Default/autorisationScreen.dart';
 import 'dart:math' as math;
 
 class Intro1 extends StatefulWidget {
@@ -33,10 +35,10 @@ class _Intro1 extends State<Intro1> {
         body: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
                 child: Container(
                   //color: Colors.blue,
-                  height: size.height-(size.height/4),
+                  height: size.height-(size.height/4)-50,
                   width: size.width,
                   child: PageView(
                     controller: controller,
@@ -66,7 +68,12 @@ class _Intro1 extends State<Intro1> {
               ),
               TextButton(
                   onPressed: () {
-
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => AutorisationScreen()
+                        )
+                    );
                  },
                   child: Column(
                     children: [
@@ -74,10 +81,8 @@ class _Intro1 extends State<Intro1> {
                         "Войти",
                         style: kv_style.blue_BankGothic_25,
                       ),
-                      Transform.rotate(
-                        angle: 90 * math.pi / 180,
-                        child: Icon(Icons.navigate_next, color: Color.fromARGB(255, 2, 49, 161), size: 80.0,)
-                      )],
+                      Image.asset("assets/Images/strip.jpg", scale: 1.5,)
+                      ],
                   )
               )
             ]),
@@ -90,64 +95,102 @@ class _Intro1 extends State<Intro1> {
   }
 
   Column page1 = Column(
+      verticalDirection: VerticalDirection.up,
       children: <Widget>[
-        Image.asset("assets/Images/Intro_page1.jpg", scale: 0.7,),
+        const Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: Text(
+              'Узнайте самое важное и интересное о нашей оргнизации',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black),
+                textAlign: TextAlign.center,
+              ),
+        ),
         const Text(
           'Об учережднии',
           style: kv_style.black_BankGothic_30,
         ),
-        const Text(
-          'Узнайте самое важное и интересное о нашей оргнизации',
-          style: TextStyle(fontSize: 20, color: Colors.black),
-          textAlign: TextAlign.center,
-        ),
+        Image.asset("assets/Images/Intro_page1.jpg", scale: 1.8,),
       ]);
 
   Column page2 = Column(
-      children: const <Widget>[
-        Text(
-          'О направлениях',
-          style: kv_style.black_BankGothic_25,
+      verticalDirection: VerticalDirection.up,
+      children: <Widget>[
+        const Padding(
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: Text(
+            'Выбирайте какая область вам ближе и знакомьтесь с ней',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.black),
+            textAlign: TextAlign.center,
+          ),
         ),
-        Text(
-          'Узнайте самое важное и интересное о нашей оргнизации',
-          style: TextStyle(fontSize: 20, color: Colors.black),
-          textAlign: TextAlign.center,
-        )]);
+        const Text(
+          'О направлениях',
+          style: kv_style.black_BankGothic_30,
+        ),
+        Image.asset("assets/Images/Intro_page2.jpg", scale: 2,),
+      ]);
 
   Column page3 = Column(
-      children: const <Widget>[
-        Text(
-          'Новости',
-          style: kv_style.black_BankGothic_25,
+      verticalDirection: VerticalDirection.up,
+      children: <Widget>[
+        const Padding(
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: Text(
+            'Всегда будьте в курсе актуальных событий',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.black),
+            textAlign: TextAlign.center,
+          ),
         ),
-        Text(
-          'Узнайте самое важное и интересное о нашей оргнизации',
-          style: TextStyle(fontSize: 20, color: Colors.black),
-          textAlign: TextAlign.center,
-        )]);
+        const Text(
+          'Новости',
+          style: kv_style.black_BankGothic_30,
+        ),
+        Image.asset("assets/Images/Intro_page3.jpg", scale: 1.8,),
+      ]);
 
   Column page4 = Column(
-      children: const <Widget>[
-        Text(
-          'Наши педагоги',
-          style: kv_style.black_BankGothic_25,
+      verticalDirection: VerticalDirection.up,
+      children: <Widget>[
+        const Padding(
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: Text(
+            'Знайте в лицо тех, кто преподносит знания',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.black),
+            textAlign: TextAlign.center,
+          ),
         ),
-        Text(
-          'Узнайте самое важное и интересное о нашей оргнизации',
-          style: TextStyle(fontSize: 20, color: Colors.black),
-          textAlign: TextAlign.center,
-        )]);
+        const Text(
+          'Наши педагоги',
+          style: kv_style.black_BankGothic_30,
+        ),
+        Image.asset("assets/Images/Intro_page4.jpg", scale: 1.8,),
+      ]);
 
   Column page5 = Column(
-      children: const <Widget>[
-        Text(
-          'Наши ученики',
-          style: kv_style.black_BankGothic_25,
+      verticalDirection: VerticalDirection.up,
+      children: <Widget>[
+        const Padding(
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: Text(
+            'Вдохновляйтесь успехами и проектами учеников',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.black),
+            textAlign: TextAlign.center,
+          ),
         ),
-        Text(
-          'Узнайте самое важное и интересное о нашей оргнизации',
-          style: TextStyle(fontSize: 20, color: Colors.black),
-          textAlign: TextAlign.center,
-        )]);
+        const Text(
+          'Наши ученики',
+          style: kv_style.black_BankGothic_30,
+        ),
+        Image.asset("assets/Images/Intro_page5.jpg", scale: 1.8,),
+      ]);
 }
