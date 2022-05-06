@@ -1,12 +1,14 @@
 class Profile {
 
+  final wh;
   final login;
   final ident;
   final rememb;
 
-  Profile({this.ident, this.rememb, this.login});
+  Profile({this.wh, this.ident, this.rememb, this.login});
 
   late String name;
+  late String who;
   late String surname;
   late bool remember;
   late int id;
@@ -16,6 +18,7 @@ class Profile {
     surname = login.split(' ')[1];
     remember = rememb;
     id = ident;
+    who = wh;
   }
 
 

@@ -21,7 +21,10 @@ class AutorisationScreen extends StatefulWidget {
 
 class _AutorisationScreenState extends State<AutorisationScreen> {
 
-  late final bool log;
+  var log;
+
+  @override
+  _AutorisationScreenState({this.log});
 
   final _formKey = GlobalKey<FormState>();
   var who, login, password;
@@ -35,26 +38,26 @@ class _AutorisationScreenState extends State<AutorisationScreen> {
     'Администратор'
   ];
 
-  _AutorisationScreenState({required this.log});
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
         .of(context)
         .size;
 
-    if(log == true) {
-      Fluttertoast.showToast(
-          msg: "Проверьте правильность ввода данных и подключение к сети!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
+    if(log != null) {
+      if (log) {
+        Fluttertoast.showToast(
+            msg: "Проверьте правильность ввода данных и подключение к сети!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
 
-      );
-      log = false;
+        );
+        log = false;
+      }
     }
 
     return Scaffold(

@@ -25,70 +25,72 @@ class _Intro1 extends State<Intro1> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
-                child: Container(
-                  //color: Colors.blue,
-                  height: size.height-(size.height/4)-50,
-                  width: size.width,
-                  child: PageView(
-                    controller: controller,
-                    onPageChanged: (index) {
-                      setState(() {
-                        currentpage = index;
-                      });
-                      print(currentpage);
-                    },
-                    children: [
-                      page1,
-                      page2,
-                      page3,
-                      page4,
-                      page5
-                    ],
+        body: SingleChildScrollView(
+          child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+                  child: Container(
+                    //color: Colors.blue,
+                    height: size.height - (size.height / 4) - 50,
+                    width: size.width,
+                    child: PageView(
+                      controller: controller,
+                      onPageChanged: (index) {
+                        setState(() {
+                          currentpage = index;
+                        });
+                        print(currentpage);
+                      },
+                      children: [
+                        page1,
+                        page2,
+                        page3,
+                        page4,
+                        page5
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SmoothPageIndicator(
-                  controller: controller,  // PageController
-                  count:  5,
-                  effect: const WormEffect(
-                    dotColor:  Color(0xffB8B8B8),
-                    activeDotColor:  Color.fromARGB(255, 2, 49, 161)
-                  )
-              ),
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => AutorisationScreen(log: false,)
-                        )
-                    );
-                 },
-                  child: Column(
-                    children: [
-                      const Text(
-                        "Войти",
-                        style: kv_style.blue_BankGothic_25,
-                      ),
-                      Image.asset("assets/Images/strip.jpg", scale: 1.5,)
+                SmoothPageIndicator(
+                    controller: controller, // PageController
+                    count: 5,
+                    effect: const WormEffect(
+                        dotColor: Color(0xffB8B8B8),
+                        activeDotColor: Color.fromARGB(255, 2, 49, 161)
+                    )
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) =>
+                                  AutorisationScreen(log: false,)
+                          )
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Войти",
+                          style: kv_style.blue_BankGothic_25,
+                        ),
+                        Image.asset("assets/Images/strip.jpg", scale: 1.5,)
                       ],
-                  )
-              )
-            ]),
+                    )
+                )
+              ]),
 
 
-
+        )
 
 
     );

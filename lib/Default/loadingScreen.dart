@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:kvantorium/DataProfile.dart';
 import 'package:kvantorium/Students/Home.dart';
+import 'package:kvantorium/Default/autorisationScreen.dart';
 
 class LoadingScreen extends StatefulWidget {
 
@@ -40,12 +41,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
         login: login,
         ident: id,
         rememb: remember,
+        wh: who
       );
       User.init();
-      Navigator.pushReplacement(
+      if(who == 'Ученик') {
+        Navigator.pushReplacement(
           context,
           CupertinoPageRoute(
-            builder: (context) => HomeStudent(profile: User)
+              builder: (context) => HomeStudent(profile: User)
+          ),
+        );
+      }
+    }
+    else {
+      Navigator.pushReplacement(
+        context,
+        CupertinoPageRoute(
+            builder: (context) => AutorisationScreen(log: true)
         ),
       );
     }
