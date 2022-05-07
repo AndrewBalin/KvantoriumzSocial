@@ -27,12 +27,17 @@ class Message extends StatelessWidget {
       child: Row(
         children: [
           Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            ),
+            color: Color.fromARGB(255, 196, 196, 196),
             constraints: BoxConstraints(
                 minHeight: 50, minWidth: 150, maxWidth: 500),
             child: Text(
                 text
             ),
           ),
+          Text(datatime)
         ]
       )
     );
